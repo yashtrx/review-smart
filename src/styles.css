@@ -1,0 +1,184 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * ReviewSmart design system.
+ * Derived from the brand logo: deep indigo core + violet glow on a
+ * soft lavender-white canvas. All colors in oklch.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.986 0.007 286);
+  --foreground: oklch(0.232 0.058 273);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.232 0.058 273);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.232 0.058 273);
+  --primary: oklch(0.44 0.2 276);
+  --primary-foreground: oklch(0.985 0.008 286);
+  --primary-glow: oklch(0.6 0.22 293);
+  --secondary: oklch(0.945 0.028 286);
+  --secondary-foreground: oklch(0.36 0.13 276);
+  --muted: oklch(0.952 0.018 286);
+  --muted-foreground: oklch(0.52 0.045 276);
+  --accent: oklch(0.935 0.04 289);
+  --accent-foreground: oklch(0.36 0.13 276);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0.008 286);
+  --border: oklch(0.915 0.025 284);
+  --input: oklch(0.915 0.025 284);
+  --ring: oklch(0.6 0.2 289);
+}
+
+.dark {
+  --background: oklch(0.16 0.045 273);
+  --foreground: oklch(0.96 0.012 286);
+  --card: oklch(0.21 0.055 274);
+  --card-foreground: oklch(0.96 0.012 286);
+  --popover: oklch(0.21 0.055 274);
+  --popover-foreground: oklch(0.96 0.012 286);
+  --primary: oklch(0.65 0.2 288);
+  --primary-foreground: oklch(0.16 0.045 273);
+  --primary-glow: oklch(0.72 0.19 295);
+  --secondary: oklch(0.28 0.06 275);
+  --secondary-foreground: oklch(0.96 0.012 286);
+  --muted: oklch(0.28 0.06 275);
+  --muted-foreground: oklch(0.7 0.04 282);
+  --accent: oklch(0.3 0.07 278);
+  --accent-foreground: oklch(0.96 0.012 286);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0.008 286);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.55 0.15 286);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ---------- Brand utilities ---------- */
+
+@utility font-brand {
+  font-family: var(--font-display);
+}
+
+@utility text-gradient-brand {
+  background-image: linear-gradient(100deg, var(--primary) 10%, var(--primary-glow) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-brand {
+  background-image: linear-gradient(115deg, var(--primary) 0%, var(--primary-glow) 100%);
+}
+
+@utility card-glass {
+  background-color: color-mix(in oklab, var(--card) 78%, transparent);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 45px -22px color-mix(in oklab, var(--primary) 35%, transparent);
+}
+
+@utility shadow-brand {
+  box-shadow: 0 14px 38px -14px color-mix(in oklab, var(--primary) 45%, transparent);
+}
+
+@utility tap-waves {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -14px;
+    border-radius: 9999px;
+    border: 2px solid color-mix(in oklab, var(--primary-glow) 55%, transparent);
+    animation: tap-wave 2.4s ease-out infinite;
+  }
+  &::after {
+    animation-delay: 1.2s;
+  }
+}
+
+@keyframes tap-wave {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@utility float-soft {
+  animation: float-soft 5s ease-in-out infinite;
+}
+
+/* ---------- NFC card mockup ---------- */
+
+@utility nfc-card {
+  position: relative;
+  border-radius: var(--radius-3xl);
+  background-image:
+    radial-gradient(120% 140% at 10% 0%, color-mix(in oklab, var(--primary-glow) 85%, white 15%) 0%, transparent 55%),
+    linear-gradient(135deg, var(--primary) 0%, color-mix(in oklab, var(--primary) 70%, black 30%) 100%);
+  box-shadow:
+    0 30px 60px -25px color-mix(in oklab, var(--primary) 55%, transparent),
+    inset 0 1px 0 color-mix(in oklab, white 40%, transparent);
+}
